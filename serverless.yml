@@ -1,0 +1,19 @@
+service: pufouniversity
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: ${opt:stage, self:custom.defaultStage}
+  region: ${opt:region, self:custom.defaultRegion}
+
+custom:
+  defaultStage: dev
+  defaultRegion: eu-west-1
+
+functions:
+  initialTest:
+    handler: src/functions/initialTest.handler
+    events:
+      - http:
+          path: api/initialTest/{name}
+          method: get
