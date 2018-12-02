@@ -1,5 +1,9 @@
 service: pufouniversity
 
+plugins:
+  - serverless-pseudo-parameters
+  - serverless-iam-roles-per-function
+
 provider:
   name: aws
   runtime: nodejs8.10
