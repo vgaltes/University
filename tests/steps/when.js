@@ -27,7 +27,9 @@ async function viaHttp(functionPath, method) {
 async function viaHandler(functionPath) {
   // eslint-disable-next-line global-require
   const handler = require(`../../src/functions/${functionPath}`);
-  return handler.handler();
+  const response = await handler.handler();
+  response.body = JSON.parse(response.body);
+  return response;
 }
 
 module.exports.we_invoke_get_masters = () =>
