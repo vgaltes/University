@@ -1,5 +1,6 @@
 const http = require("superagent-promise")(require("superagent"), Promise);
-const mode = process.env.TEST_MODE;
+
+let mode = "";
 
 async function viaHttp(functionPath, method) {
   const apiRoot = process.env.TEST_BASE_URL;
@@ -24,10 +25,14 @@ async function viaHttp(functionPath, method) {
 }
 
 async function viaHandler(functionPath) {
+  // eslint-disable-next-line global-require
   const handler = require(`../../src/functions/${functionPath}`);
-  return await handler.handler();
+  return handler.handler();
 }
 
-module.exports.we_invoke_get_masters = () => {
-  return mode === "http" ? viaHttp("masters", "GET") : viaHandler("getMasters");
+module.exports.init = () => {
+  mode = process.env.TEST_MODE;
 };
+
+module.exports.we_invoke_get_masters = () =>
+  mode === "http" ? viaHttp("masters", "GET") : viaHandler("getMasters");

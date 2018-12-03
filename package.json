@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest --coverage --config=unitTestsJestConfig.json",
     "lint": "eslint \"./**/*.js\" --fix",
-    "test:acceptance": "jest ./tests/acceptance/*.js",
-    "test:integration": "TEST_MODE=handler jest ./tests/integration/*.js",
+    "test:acceptance": "TEST_MODE=handler TEST_BASE_URL='https://6rf3v00hv9.execute-api.eu-west-1.amazonaws.com/dev' jest ./tests/*.js",
+    "test:integration": "TEST_MODE=handler jest ./tests/*.js",
     "pretest": "npm run lint",
     "posttest": "npm audit",
     "deploy": "serverless deploy"
