@@ -30,9 +30,5 @@ async function viaHandler(functionPath) {
   return handler.handler();
 }
 
-module.exports.init = () => {
-  mode = process.env.TEST_MODE;
-};
-
 module.exports.we_invoke_get_masters = () =>
   mode === "http" ? viaHttp("masters", "GET") : viaHandler("getMasters");

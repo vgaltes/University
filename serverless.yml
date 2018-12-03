@@ -13,6 +13,7 @@ provider:
 custom:
   defaultStage: dev
   defaultRegion: eu-west-1
+  mastersTable: masters
 
 functions:
   initialTest:
@@ -21,3 +22,5 @@ functions:
       - http:
           path: api/initialTest/{name}
           method: get
+    environment:
+      mastersTable: ${self:custom.mastersTable}

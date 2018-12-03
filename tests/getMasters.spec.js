@@ -1,8 +1,9 @@
 const when = require("./steps/when");
+const { init } = require("./steps/init");
 
 describe(`When we invoke the GET /masters endpoint`, () => {
   beforeAll(() => {
-    when.init();
+    init();
   });
 
   test(`Should return an array of 8 masters`, async () => {
