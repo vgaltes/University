@@ -14,8 +14,8 @@ describe(`When we invoke the GET /masters endpoint`, () => {
 
     for (let i = 0; i < res.body.length; i += 1) {
       const master = res.body[i];
+      expect(master).toHaveProperty("id");
       expect(master).toHaveProperty("name");
-      expect(master).toHaveProperty("description");
     }
   });
 });

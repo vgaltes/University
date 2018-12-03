@@ -8,7 +8,8 @@ module.exports.handler = async () => {
 
   const req = {
     TableName: tableName,
-    Limit: count
+    Limit: count,
+    AttributesToGet: ["id", "name"]
   };
 
   const resp = await dynamodb.scan(req).promise();

@@ -36,9 +36,9 @@ resources:
       Properties:
         TableName: ${self:custom.mastersTable}
         AttributeDefinitions:
-          - AttributeName: name
-            AttributeType: S
+          - AttributeName: id
+            AttributeType: N
         KeySchema:
-          - AttributeName: name
+          - AttributeName: id
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
