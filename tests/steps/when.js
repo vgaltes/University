@@ -1,6 +1,6 @@
 const http = require("superagent-promise")(require("superagent"), Promise);
 
-let mode = "";
+const mode = process.env.TEST_MODE;
 
 async function viaHttp(functionPath, method) {
   const apiRoot = process.env.TEST_BASE_URL;
