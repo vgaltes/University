@@ -8,6 +8,7 @@
     "lint": "eslint \"./**/*.js\" --fix",
     "test:acceptance": "TEST_MODE=handler TEST_BASE_URL='https://6rf3v00hv9.execute-api.eu-west-1.amazonaws.com/dev' jest ./tests/*.js",
     "test:integration": "TEST_MODE=handler jest ./tests/*.js",
+    "seedMasters": "node seedMasters.js",
     "pretest": "npm run lint",
     "posttest": "npm audit",
     "deploy": "serverless deploy"
