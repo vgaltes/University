@@ -1,0 +1,6 @@
+dev-user:
+  mastersTable: "masters-dev${env:SLSUSER}"
+sit:
+  mastersTable: "masters-sit"
+prod:
+  mastersTable: "masters"
