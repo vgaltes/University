@@ -3,4 +3,4 @@ dev-user:
 sit:
   mastersTable: "masters-sit"
 prod:
-  mastersTable: "masters"
+  mastersTable: "masters-prod"
