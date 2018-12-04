@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --coverage --config=unitTestsJestConfig.json",
     "lint": "eslint \"./**/*.js\" --fix",
-    "test:acceptance": "TEST_MODE=handler jest ./tests/*.js",
+    "test:acceptance": "TEST_MODE=http jest ./tests/*.js",
     "test:integration": "TEST_MODE=handler jest ./tests/*.js",
     "seedMasters": "node seedMasters.js",
     "seedMasters:sit": "node seedMasters.js masters-sit",
