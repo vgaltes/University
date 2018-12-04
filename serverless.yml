@@ -7,13 +7,15 @@ plugins:
 provider:
   name: aws
   runtime: nodejs8.10
-  stage: ${opt:stage, self:custom.defaultStage}
   region: ${opt:region, self:custom.defaultRegion}
+  stage: dev${env:SLSUSER}
 
 custom:
-  defaultStage: dev
   defaultRegion: eu-west-1
   mastersTable: masters
+  stage: ${opt:stage, self:provider.stage}
+  defaultVarsStage: dev-user
+  vars: ${file(./vars.yml):${opt:stage, self:custom.defaultVarsStage}}
 
 functions:
   getMasters:
@@ -23,18 +25,18 @@ functions:
           path: /masters/
           method: get
     environment:
-      mastersTable: ${self:custom.mastersTable}
+      mastersTable: ${self:custom.vars.mastersTable}
     iamRoleStatements:
       - Effect: Allow
         Action: dynamodb:scan
-        Resource: arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/${self:custom.mastersTable}
+        Resource: arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/${self:custom.vars.mastersTable}
 
 resources:
   Resources:
     MastersTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: ${self:custom.mastersTable}
+        TableName: ${self:custom.vars.mastersTable}
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: N

@@ -11,7 +11,9 @@
     "seedMasters": "node seedMasters.js",
     "pretest": "npm run lint",
     "posttest": "npm audit",
-    "deploy": "serverless deploy"
+    "deploy": "serverless deploy",
+    "deploy:sit": "serverless deploy --stage sit",
+    "deploy:prod": "serverless deploy --stage prod"
   },
   "author": "Vicenc Garcia Altes",
   "license": "MIT",
