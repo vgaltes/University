@@ -3,15 +3,13 @@ const given = require("./steps/given");
 const { init } = require("./steps/init");
 
 describe(`Given an authenticated user`, () => {
-  let user;
-
   beforeEach(() => {
     init();
-    user = given.an_authenticated_user();
   });
 
   describe(`When we invoke the GET /master/{id} endpoint`, () => {
     test(`Should return the details of the master`, async () => {
+      const user = await given.an_authenticated_user();
       const res = await when.we_invoke_get_master_details(user, 1);
 
       expect(res.statusCode).toBe(200);

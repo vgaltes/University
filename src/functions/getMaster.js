@@ -4,11 +4,12 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 const tableName = process.env.mastersTable;
 
 async function findMasterById(id) {
+  const idAsInteger = parseInt(id, 10);
   const params = {
     TableName: tableName,
     KeyConditionExpression: "id = :id",
     ExpressionAttributeValues: {
-      ":id": id
+      ":id": idAsInteger
     }
   };
 

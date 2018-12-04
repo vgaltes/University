@@ -31,6 +31,7 @@ module.exports.an_authenticated_user = async () => {
       { Name: "email", Value: email }
     ]
   };
+
   await cognito.adminCreateUser(createReq).promise();
 
   console.log(`[${username}] - user is created`);
@@ -39,24 +40,18 @@ module.exports.an_authenticated_user = async () => {
     AuthFlow: "ADMIN_NO_SRP_AUTH",
     UserPoolId: userpoolId,
     ClientId: clientId,
-    AuthParameters: {
-      USERNAME: username,
-      PASSWORD: password
-    }
+    AuthParameters: { USERNAME: email, PASSWORD: password }
   };
   const resp = await cognito.adminInitiateAuth(req).promise();
 
-  console.log(`[${username}] - initialised auth flow`);
+  console.log(`[${email}] - initialised auth flow`);
 
   const challengeReq = {
     UserPoolId: userpoolId,
     ClientId: clientId,
     ChallengeName: resp.ChallengeName,
     Session: resp.Session,
-    ChallengeResponses: {
-      USERNAME: username,
-      NEW_PASSWORD: randomPassword()
-    }
+    ChallengeResponses: { USERNAME: email, NEW_PASSWORD: randomPassword() }
   };
 
   const challengeResp = await cognito
@@ -64,9 +59,8 @@ module.exports.an_authenticated_user = async () => {
     .promise();
 
   console.log(`[${username}] - responded to auth challenge`);
-
   return {
-    username,
+    email,
     firstName,
     lastName,
     idToken: challengeResp.AuthenticationResult.IdToken
