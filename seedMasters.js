@@ -1,5 +1,7 @@
 const AWS = require("aws-sdk");
 
+const tableName = process.argv.slice(2)[0];
+
 AWS.config.region = "eu-west-1";
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
@@ -63,9 +65,10 @@ const putReqs = masters.map(x => ({
 
 const req = {
   RequestItems: {
-    masters: putReqs
+    [tableName]: putReqs
   }
 };
+
 dynamodb
   .batchWrite(req)
   .promise()

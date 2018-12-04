@@ -8,7 +8,7 @@ provider:
   name: aws
   runtime: nodejs8.10
   region: ${opt:region, self:custom.defaultRegion}
-  stage: dev${env:SLSUSER}
+  stage: dev${env:SLSUSER, ""}
 
 custom:
   defaultRegion: eu-west-1
