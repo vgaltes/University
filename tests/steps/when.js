@@ -24,13 +24,20 @@ async function viaHttp(functionPath, method) {
   }
 }
 
-async function viaHandler(functionPath) {
+async function viaHandler(functionPath, event) {
   // eslint-disable-next-line global-require
   const handler = require(`../../src/functions/${functionPath}`);
-  const response = await handler.handler();
+  const response = await handler.handler(event);
   response.body = JSON.parse(response.body);
   return response;
 }
 
 module.exports.we_invoke_get_masters = () =>
   mode === "http" ? viaHttp("masters", "GET") : viaHandler("getMasters");
+
+module.exports.we_invoke_get_master_details = (user, masterId) => {
+  const event = { pathParameters: { id: masterId } };
+  return mode === "http"
+    ? viaHttp("masters", "GET")
+    : viaHandler("getMaster", event);
+};
