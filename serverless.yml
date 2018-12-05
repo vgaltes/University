@@ -21,8 +21,10 @@ functions:
     handler: src/functions/getMasters.handler
     events:
       - http:
-          path: /masters/
-          method: get
+          path: /masters
+          method:
+            - get
+            - options
     environment:
       mastersTable: ${self:custom.vars.mastersTable}
     iamRoleStatements:
