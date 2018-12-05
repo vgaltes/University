@@ -22,9 +22,11 @@ functions:
     events:
       - http:
           path: /masters
-          method:
-            - get
-            - options
+          method: get
+          cors: true
+      - http:
+          path: /masters
+          method: options
     environment:
       mastersTable: ${self:custom.vars.mastersTable}
     iamRoleStatements:
