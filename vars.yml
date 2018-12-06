@@ -6,4 +6,4 @@ sit:
   userPoolId: "eu-west-1_ULBgHMa53"
 prod:
   mastersTable: "masters-prod"
-  userPoolId: "eu-west-1_ULBgHMa53"
+  userPoolId: "eu-west-1_9QODsa1Js"
