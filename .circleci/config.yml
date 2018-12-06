@@ -28,9 +28,17 @@ jobs:
       - run:
           name: Run integration tests
           command: TEST_STAGE=sit npm run test:integration
+          environment:
+            cognitoUserPoolId: eu-west-1_ULBgHMa53
+            cognitoServerClientId: 4m3no5tpsbtd214p2osnqore7s
+            identityPoolId: eu-west-1:84871c0d-964f-431b-b339-f9667ef1aa91
       - run:
           name: Run acceptance tests
           command: npm run test:acceptance
+          environment:
+            cognitoUserPoolId: eu-west-1_ULBgHMa53
+            cognitoServerClientId: 4m3no5tpsbtd214p2osnqore7s
+            identityPoolId: eu-west-1:84871c0d-964f-431b-b339-f9667ef1aa91
       - run:
           name: Deploy application
           command: npm run deploy:prod
