@@ -16,6 +16,9 @@ module.exports.handler = async () => {
 
   const res = {
     statusCode: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    },
     body: JSON.stringify(resp.Items)
   };
 

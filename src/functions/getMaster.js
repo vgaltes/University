@@ -22,7 +22,14 @@ module.exports.handler = async event => {
 
   const master = await findMasterById(id);
 
-  const res = { statusCode: 200, body: JSON.stringify(master) };
+  const res = {
+    statusCode: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true
+    },
+    body: JSON.stringify(master)
+  };
 
   return res;
 };
