@@ -4,6 +4,11 @@ plugins:
   - serverless-pseudo-parameters
   - serverless-iam-roles-per-function
 
+resources:
+  - ${file(resources/masters-dynamodb-table.yml)}
+  - ${file(resources/cognito-user-pool.yml)}
+  - ${file(resources/cognito-identity-pool.yml)}
+
 provider:
   name: aws
   runtime: nodejs8.10
@@ -45,8 +50,3 @@ functions:
       - Effect: Allow
         Action: dynamodb:query
         Resource: arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/${self:custom.vars.mastersTable}
-
-resources:
-  - ${file(resources/masters-dynamodb-table.yml)}
-  - ${file(resources/cognito-user-pool.yml)}
-  - ${file(resources/cognito-identity-pool.yml)}

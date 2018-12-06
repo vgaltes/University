@@ -3,7 +3,7 @@ dev-user:
   userPoolId: "eu-west-1_ZhE6p80om"
 sit:
   mastersTable: "masters-sit"
-  userPoolId: ""
+  userPoolId: "eu-west-1_ULBgHMa53"
 prod:
   mastersTable: "masters-prod"
-  userPoolId: ""
+  userPoolId: "eu-west-1_ULBgHMa53"
